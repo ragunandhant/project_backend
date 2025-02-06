@@ -64,6 +64,8 @@ export async function GET(request: Request){
 
     try {
         const allRaces = await db.select().from(races)
+        console.log(allRaces,"123456");
+        
         return NextResponse.json(
             {
                 "message":"All Available races",

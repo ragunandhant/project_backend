@@ -4,7 +4,9 @@ import { DistanceCard } from '@/components/DistanceCard';
 import { use } from 'react';
 
 export default function DistanceSelectionPage({ params }: { params: { id: string } }) {
-  const { id: raceId } = use(params);
+
+  const raceId = use(params).id;
+  
 
   if (!raceId) return null;
 
@@ -16,8 +18,8 @@ export default function DistanceSelectionPage({ params }: { params: { id: string
         </h2>
 
         <div className="space-y-4">
-          <DistanceCard distance="200m" raceId={raceId} index={0} />
-          <DistanceCard distance="300m" raceId={raceId} index={1} />
+          <DistanceCard distance="200m" raceId={raceId} index={} />
+          <DistanceCard distance="300m" raceId={raceId} index={} />
         </div>
       </div>
     </div>

@@ -1,21 +1,41 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RaceCard } from "../components/RaceCard";
 import { LoadingSpinner } from "../components/LoadingSpinner";
 import Image from "next/image";
-
-const MOCK_RACES = [
-  { id: "1", name: "சி. கோபால்புரம் பிரிவு ரேக்ளா போட்டி", date: "2025-01-16" },
-  { id: "2", name: "பெரியபட்டி ரேக்ளா போட்டி", date: "2025-01-26" },
-  { id: "3", name: "வெள்ளலூர் ரேக்ளா போட்டி ", date: "2025-02-02" },
-  { id: "4", name: "சுங்கார மடக்கு ரேக்ளா போட்டி", date: "2025-02-08" },
-];
+import type { Race, } from "../types";
 
 export default function Page() {
-  const [loading] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [races, setRaces] = useState<Race[]>([]);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchRaces = async () => {
+      try {
+        const response = await fetch('/api/race');
+        const data = await response.json();
+        console.log(data,"12345");
+        
+        
+        if (data.error) {
+          throw new Error(data.error_message || 'Failed to fetch races');
+        }
+        
+        setRaces(data.data);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'An error occurred');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchRaces();
+  }, []);
 
   if (loading) return <LoadingSpinner />;
+  if (error) return <div className="text-red-500 text-center p-4">{error}</div>;
 
   return (
     <div className="min-h-screen bg-amber-50 p-4">
@@ -36,7 +56,7 @@ export default function Page() {
         </div>
 
         <div className="space-y-4">
-          {MOCK_RACES.map((race, index) => (
+          {races.map((race, index) => (
             <RaceCard key={race.id} race={race} index={index} />
           ))}
         </div>
