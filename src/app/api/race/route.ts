@@ -14,25 +14,33 @@ export async function POST(request: Request){
             }
         ).returning({insertedId:races.id});
 
-        await db.insert(categories).values(
+        const race200  =await db.insert(categories).values(
             {
                 name: "200 meters",
                 raceId: newRace[0].insertedId
             }
         ).returning({insertedId:categories.id});
 
-        await db.insert(categories).values(
+        const race300 = await db.insert(categories).values(
             {
                 name: "300 meters",
                 raceId: newRace[0].insertedId
             }
         ).returning({insertedId:categories.id});
+        const returnData = {
+       
+            race200: race200[0].insertedId,
+            race300: race300[0].insertedId,
+            race: newRace[0].insertedId
+
+       
+        }
         return NextResponse.json(
             {
                 "message":"race created",
                 "error":false,
                 "error_message":null,
-                "data":newRace
+                "data":returnData
             },{
                 status:201
             }

@@ -9,9 +9,11 @@ export async function POST(request: Request){
         const body = await request.json();
         const newRace = await db.insert(entries).values(
             {
-                name: body.name,
-                time: body.time,
-                categoriesId: body.categoriesId
+            name1: body.name1,
+            name2: body.name2,
+            cartno: body.cartno,
+            time: Number(parseFloat(body.time).toFixed(4)),
+            categoriesId: body.categoriesId
             }
         ).returning({insertedId:entries.id});
 
@@ -26,6 +28,7 @@ export async function POST(request: Request){
             })
     }
     catch (error) {
+        console.log("error",error)
         return NextResponse.json(
             {
                 "message":"",
