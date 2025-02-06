@@ -3,13 +3,14 @@ import Link from 'next/link';
 import { Timer, ArrowRight } from 'lucide-react';
 
 interface DistanceCardProps {
-  distance: '200m' | '300m';
+  distance: string;
   raceId: string;
   index: number;
+  contestId: string;
 }
 
-export const DistanceCard = ({ distance, raceId, index }: DistanceCardProps) => {
-  const is200m = distance === '200m';
+export const DistanceCard = ({ distance, raceId, index,contestId }: DistanceCardProps) => {
+  const is200m = distance.includes('200');
   
   // Using specific Tailwind classes instead of dynamic template literals
   const cardClasses = is200m
@@ -32,7 +33,7 @@ export const DistanceCard = ({ distance, raceId, index }: DistanceCardProps) => 
       transition={{ delay: index * 0.2 }}
       className="group"
     >
-      <Link href={`/race/${raceId}/leaderboard/${distance}`}>
+      <Link href={`/race/${raceId}/leaderboard/${contestId}`}>
         <div className={cardClasses}>
           <div className="flex justify-between items-start mb-6">
             <div className="space-y-2">

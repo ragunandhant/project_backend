@@ -11,7 +11,7 @@ export async function GET(
   ){
 
     try {
-        const allEntries = await db.select().from(categories).where(eq(categories.id,params.raceid))
+        const allEntries = await db.select().from(categories).where(eq(categories.raceId,params.raceid))
         return NextResponse.json(
             {
                 "message": allEntries.length > 0 ? "entries found" : "no entries found",
