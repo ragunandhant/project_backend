@@ -26,7 +26,8 @@ export default function DistanceSelectionPage({ params }: { params: { id: string
         console.log(data);
         setDistances(data.data);
       } catch (err) {
-        setError("Error fetching race distances");
+        setError("Error fetching race distances"+err);
+        console.error(err);
       } finally {
         setLoading(false);
       }
