@@ -1,9 +1,19 @@
 import { motion } from 'framer-motion';
 import { Trophy } from 'lucide-react';
-import type { BullResult } from '../types';
 
+
+export type Entry = {
+  id: string; // UUID
+  name1: string;
+  name2: string | null; // Optional field
+  cartno: string;
+  time: number; // Double precision
+  created_at: Date;
+  updated_at: Date;
+  categoriesId: string; // UUID
+};
 interface LeaderboardRowProps {
-  result: BullResult;
+  result: Entry;
   position: number;
   index: number;
 }
@@ -43,16 +53,14 @@ export const LeaderboardRow = ({ result, position, index }: LeaderboardRowProps)
           </div>
           <div>
             <span className="block text-lg font-semibold text-amber-900">
-              Bull #{result.bullNumber}
+              Cart No #{result.cartno}
             </span>
-            <span className="text-sm font-medium text-amber-600">
-              Race #{result.raceId}
-            </span>
+            
           </div>
         </div>
         <div className="text-right">
           <span className="block font-mono text-2xl font-bold text-amber-900">
-            {result.completionTime.toFixed(2)}
+            {result.time.toFixed(2)}
           </span>
           <span className="text-sm font-medium text-amber-600">seconds</span>
         </div>

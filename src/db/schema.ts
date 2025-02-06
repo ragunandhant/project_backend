@@ -1,4 +1,4 @@
-import { integer, pgTable, serial, text,timestamp,date,doublePrecision,index, uuid } from "drizzle-orm/pg-core";
+import { pgTable, text,timestamp,date,doublePrecision,index, uuid } from "drizzle-orm/pg-core";
 
 
 export const races = pgTable("races", {
