@@ -25,6 +25,8 @@ type ApiResponse = {
   contestName: string;
 };
 
+
+
 export default function LeaderboardPage({
   params,
 }: {
