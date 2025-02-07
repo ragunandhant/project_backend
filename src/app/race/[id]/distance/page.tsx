@@ -27,19 +27,15 @@ export default function DistanceSelectionPage() {
         const data = await response.json();
         setDistances(data.data);
       } catch (err) {
-        console.log(err);
         setError('Error fetching race distances');
-      } finally {
-        setLoading(false);
-      }
-    }
-
     if (raceId) {
       fetchDistances();
     }
   }, [raceId]);
 
   if (!raceId) return null;
+  if (loading) return <LoadingSpinner />;
+  if (error) return <p className="text-red-500 text-center">{error}</p>;
   if (loading) return <LoadingSpinner />;
   if (error) return <p className="text-red-500 text-center">{error}</p>;
 
@@ -65,3 +61,6 @@ export default function DistanceSelectionPage() {
     </div>
   );
 }
+
+
+{/* <DistanceCard distance="200m" raceId={raceId} index={0} /> */}

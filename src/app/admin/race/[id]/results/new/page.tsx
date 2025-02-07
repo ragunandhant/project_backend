@@ -1,10 +1,19 @@
 // "use client"
+// "use client"
 
 // import { useState } from 'react';
 // import { toast } from 'react-toastify';
 // import { motion } from 'framer-motion';
 // import { Timer, Plus, Trash2 } from 'lucide-react';
+// import { useState } from 'react';
+// import { toast } from 'react-toastify';
+// import { motion } from 'framer-motion';
+// import { Timer, Plus, Trash2 } from 'lucide-react';
 
+// interface BullEntry {
+//   bullNumber: string;
+//   completionTime: string;
+// }
 // interface BullEntry {
 //   bullNumber: string;
 //   completionTime: string;
@@ -28,7 +37,15 @@
 //   const removeEntry = (index: number) => {
 //     setEntries(prev => prev.filter((_, i) => i !== index));
 //   };
+//   const removeEntry = (index: number) => {
+//     setEntries(prev => prev.filter((_, i) => i !== index));
+//   };
 
+//   const updateEntry = (index: number, field: keyof BullEntry, value: string) => {
+//     setEntries(prev => prev.map((entry, i) => 
+//       i === index ? { ...entry, [field]: value } : entry
+//     ));
+//   };
 //   const updateEntry = (index: number, field: keyof BullEntry, value: string) => {
 //     setEntries(prev => prev.map((entry, i) => 
 //       i === index ? { ...entry, [field]: value } : entry
