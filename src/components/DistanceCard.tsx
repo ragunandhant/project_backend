@@ -40,7 +40,7 @@ export const DistanceCard = ({ distance, raceId, index,contestId }: DistanceCard
               <div className="flex items-center gap-2">
                 <Timer className={timerIconClasses} />
                 <h3 className={titleClasses}>
-                  {distance} Race
+                  {distance} Scoreboard
                 </h3>
               </div>
             </div>

@@ -26,7 +26,7 @@ export const RaceCard = ({ race, index }: RaceCardProps) => {
             <div className="space-y-3">
               <div className="space-y-1">
                 <div className="text-amber-600 text-sm font-medium tracking-wider uppercase">
-                பாரம்பரிய காளை போட்டி
+                பாரம்பரிய விளையாட்டு
                 </div>
                 <h3 className="font-display text-2xl font-bold text-amber-900 leading-tight">
                   {race.name}

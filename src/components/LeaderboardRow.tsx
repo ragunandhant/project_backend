@@ -53,14 +53,14 @@ export const LeaderboardRow = ({ result, position, index }: LeaderboardRowProps)
           </div>
           <div>
             <span className="block text-lg font-semibold text-amber-900">
-              Cart No #{result.cartno}
+              வண்டி எண் {result.cartno}
             </span>
             
           </div>
         </div>
         <div className="text-right">
           <span className="block font-mono text-2xl font-bold text-amber-900">
-            {result.time.toFixed(2)}
+            {result.time.toFixed(3)}
           </span>
           <span className="text-sm font-medium text-amber-600">seconds</span>
         </div>

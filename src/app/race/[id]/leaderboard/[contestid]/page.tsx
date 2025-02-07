@@ -77,7 +77,7 @@ export default function LeaderboardPage({
         <div className="flex items-center justify-center mb-8">
           <Trophy className="w-8 h-8 text-amber-700 mr-2" />
           <h1 className="text-2xl font-bold text-amber-900">
-            {contestName} Leaderboard
+            {contestName ? contestName.slice(0, 5) : 'Race'} Scoreboard
           </h1>
         </div>
 

@@ -7,6 +7,15 @@ export async function POST(request: Request){
 
     try {
         const body = await request.json();
+
+        if(body.password!="1968")
+            {
+                return NextResponse.json({
+                    message:"password is not valid"
+                },{
+                    status:403
+                })
+            }
         const newRace = await db.insert(entries).values(
             {
             name1: body.name1,

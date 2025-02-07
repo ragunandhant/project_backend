@@ -16,7 +16,6 @@ export default function Page() {
       try {
         const response = await fetch('/api/race');
         const data = await response.json();
-        console.log(data,"12345");
         
         
         if (data.error) {
@@ -52,7 +51,7 @@ export default function Page() {
         </div>
 
         <div className="flex items-center justify-center mb-8">
-          <h1 className="text-2xl font-bold text-amber-900 text-center">ரேக்ளா தலைமைக் சங்கம் தமிழ்நாடு</h1>
+          <h1 className="text-2xl font-bold text-amber-900 text-center">ரேக்ளா தலைமை சங்கம் தமிழ்நாடு</h1>
         </div>
 
         <div className="space-y-4">

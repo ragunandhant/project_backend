@@ -1,10 +1,20 @@
 import { NextResponse } from "next/server";
 import db from "@/db/connection";
+import { desc } from 'drizzle-orm';
 import { races,categories } from "@/db/schema";
 export async function POST(request: Request){
 
     try {
         const body = await request.json();
+
+        if(body.password!="1968")
+        {
+            return NextResponse.json({
+                message:"password is not valid"
+            },{
+                status:403
+            })
+        }
         const newRace = await db.insert(races).values(
             {
                 name: body.name,
@@ -63,8 +73,7 @@ export async function POST(request: Request){
 export async function GET(){
 
     try {
-        const allRaces = await db.select().from(races)
-        console.log(allRaces,"123456");
+        const allRaces = await db.select().from(races).orderBy(desc(races.created_at));
         
         return NextResponse.json(
             {
