@@ -21,3 +21,13 @@
 //     </div>
 //   );
 // };
+
+import React from 'react'
+
+function DistanceSelectionPage() {
+  return (
+    <div>DistanceSelectionPage</div>
+  )
+}
+
+export default DistanceSelectionPage

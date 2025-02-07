@@ -2,8 +2,7 @@ import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { motion } from 'framer-motion';
 import { Flag } from 'lucide-react';
-
-export const RaceFormPage = () => {
+const RaceFormPage = () => {
   const [formData, setFormData] = useState({
     name: '',
     date: '',
@@ -74,3 +73,5 @@ export const RaceFormPage = () => {
     </div>
   );
 };
+
+export default RaceFormPage

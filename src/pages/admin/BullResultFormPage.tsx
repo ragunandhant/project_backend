@@ -116,3 +116,5 @@ export const BullResultFormPage = () => {
     </div>
   );
 };
+
+export default BullResultFormPage;
