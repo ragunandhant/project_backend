@@ -14,11 +14,7 @@ export const LoadingSpinner = () => {
           ease: "linear"
         }}
       >
-        <img
-          src="https://images.unsplash.com/photo-1630516647893-ea0d7d139654?w=400"
-          alt="Tamil Bull"
-          className="w-full h-full object-cover rounded-full border-4 border-amber-600"
-        />
+       
       </motion.div>
       <div className="absolute mt-36 text-xl font-semibold text-amber-800">
         Loading...
