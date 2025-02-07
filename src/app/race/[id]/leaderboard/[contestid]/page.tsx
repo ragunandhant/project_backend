@@ -4,7 +4,7 @@ import { Trophy } from 'lucide-react';
 import { LeaderboardRow } from '@/components/LeaderboardRow';
 import { LoadingSpinner } from '@/components/LoadingSpinner';
 import { useEffect, useState } from 'react';
-import { use } from "react";
+
 export type Entry = {
   id: string; // UUID
   name1: string;
@@ -16,7 +16,6 @@ export type Entry = {
   categoriesId: string; // UUID
 };
 
-
 type ApiResponse = {
   message: string;
   error: boolean;
@@ -25,34 +24,39 @@ type ApiResponse = {
   contestName: string;
 };
 
-type races = {
-  id: string;
-    name: string;
-}
 export default function LeaderboardPage({
   params,
 }: {
-  params: { id: string; contestid: string };
+  params: Promise<{ id: string; contestid: string }>;
 }) {
-  const { id: raceId, contestid } = use(params); 
-  console.log(raceId,contestid);
   const [results, setResults] = useState<Entry[]>([]);
   const [loading, setLoading] = useState(true);
-  const [contestName, setcontestName] = useState<string | null>("");
-  if (!raceId || !contestid) return null;
+  const [contestName, setContestName] = useState<string | null>(null);
+  const [raceId, setRaceId] = useState<string | null>(null);
+  const [contestId, setContestId] = useState<string | null>(null);
+
   useEffect(() => {
+    const fetchParams = async () => {
+      const { id, contestid } = await params;
+      setRaceId(id);
+      setContestId(contestid);
+    };
+
+    fetchParams();
+  }, [params]);
+
+  useEffect(() => {
+    if (!raceId || !contestId) return;
+
     const fetchData = async () => {
       try {
-        const response = await fetch(`/api/category/${contestid}`);
+        const response = await fetch(`/api/category/${contestId}`);
         const data: ApiResponse = await response.json();
-        setcontestName(data.contestName);
+        setContestName(data.contestName);
         if (!data.error && data.data) {
           const sortedResults = data.data.sort((a, b) => a.time - b.time);
           setResults(sortedResults);
         }
-
-
-
       } catch (error) {
         console.error('Failed to fetch data:', error);
       } finally {
@@ -61,9 +65,7 @@ export default function LeaderboardPage({
     };
 
     fetchData();
-  }, [contestid]);
-
-
+  }, [contestId, raceId]);
 
   if (loading) {
     return <LoadingSpinner />;

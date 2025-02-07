@@ -14,11 +14,13 @@
 //   params,
 // }: {
 //   params: { id: string };
+//   searchParams?: { [key: string]: string | string[] | undefined };
 // }) {
 //   const [entries, setEntries] = useState<BullEntry[]>([
 //     { bullNumber: '', completionTime: '' }
 //   ]);
-
+//   console.log(params.id);
+  
 //   const addEntry = () => {
 //     setEntries(prev => [...prev, { bullNumber: '', completionTime: '' }]);
 //   };
@@ -39,6 +41,8 @@
 //       // TODO: Implement form submission with race ID from params.id
 //       toast.success('Results saved successfully!');
 //     } catch (error) {
+//       console.log(error);
+      
 //       toast.error('Failed to save results');
 //     }
 //   };
@@ -127,12 +131,11 @@
 //   );
 // }
 
-import React from 'react'
 
-function page() {
+export default function Page() {
   return (
-    <div>page</div>
-  )
-}
-
-export default page
+    <div className="min-h-screen bg-amber-50 p-4">
+      hello
+      </div>
+      );
+};

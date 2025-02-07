@@ -4,10 +4,9 @@ import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { motion } from 'framer-motion';
 import { Flag } from 'lucide-react';
-import type { RaceFormData } from '@/types';
 
 export default function RaceFormPage() {
-  const [formData, setFormData] = useState<RaceFormData>({
+  const [formData, setFormData] = useState({
     name: '',
     date: '',
   });
@@ -18,6 +17,7 @@ export default function RaceFormPage() {
       // TODO: Implement form submission
       toast.success('Race created successfully!');
     } catch (error) {
+      console.log(error);
       toast.error('Failed to create race');
     }
   };

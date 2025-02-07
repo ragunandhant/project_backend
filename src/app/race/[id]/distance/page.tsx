@@ -1,17 +1,19 @@
-"use client";
+'use client';
 
-import { useState, useEffect } from "react";
-import { LoadingSpinner } from "@/components/LoadingSpinner";
-import { DistanceCard } from "@/components/DistanceCard";
-import { use } from "react";
+import { useState, useEffect } from 'react';
+import { useParams } from 'next/navigation';
+import { LoadingSpinner } from '@/components/LoadingSpinner';
+import { DistanceCard } from '@/components/DistanceCard';
 
 type Distance = {
   name: string;
   raceId: string;
   id: string;
 };
-export default function DistanceSelectionPage({ params }: { params: { id: string } }) {
-  const raceId = use(params).id;
+
+export default function DistanceSelectionPage() {
+  const params = useParams<{ id: string }>();
+  const raceId = params?.id;
 
   const [distances, setDistances] = useState<Distance[] | null>(null);
   const [loading, setLoading] = useState(true);
@@ -21,17 +23,17 @@ export default function DistanceSelectionPage({ params }: { params: { id: string
     async function fetchDistances() {
       try {
         const response = await fetch(`/api/race/${raceId}`);
-        if (!response.ok) throw new Error("Failed to fetch distances");
+        if (!response.ok) throw new Error('Failed to fetch distances');
         const data = await response.json();
-        console.log(data);
         setDistances(data.data);
       } catch (err) {
-        setError("Error fetching race distances");
+        console.log(err);
+        setError('Error fetching race distances');
       } finally {
         setLoading(false);
       }
     }
-    
+
     if (raceId) {
       fetchDistances();
     }
@@ -50,13 +52,16 @@ export default function DistanceSelectionPage({ params }: { params: { id: string
 
         <div className="space-y-4">
           {distances?.map((distance, index) => (
-            <DistanceCard key={index} distance={distance.name} raceId={raceId} index={index} contestId={distance.id} />
+            <DistanceCard
+              key={index}
+              distance={distance.name}
+              raceId={raceId}
+              index={index}
+              contestId={distance.id}
+            />
           ))}
         </div>
       </div>
     </div>
   );
 }
-
-
-{/* <DistanceCard distance="200m" raceId={raceId} index={0} /> */}

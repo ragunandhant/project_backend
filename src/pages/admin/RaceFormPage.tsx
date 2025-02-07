@@ -2,10 +2,9 @@ import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { motion } from 'framer-motion';
 import { Flag } from 'lucide-react';
-import type { RaceFormData } from '../../types';
 
 export const RaceFormPage = () => {
-  const [formData, setFormData] = useState<RaceFormData>({
+  const [formData, setFormData] = useState({
     name: '',
     date: '',
   });
